@@ -1,0 +1,13 @@
+
+.mat-list-item {
+  float: right;
+  margin: 30px;
+}
+/* .list-group-item{
+  margin: 30px;
+} */
+
+.forcastForm {
+  float:none;
+  margin:0 auto;
+} 

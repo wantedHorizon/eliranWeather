@@ -1,0 +1,122 @@
+<div class="row">
+    <div class=" col-md-5">
+        <h2  >
+            Favorites:
+          </h2>          
+
+                 <ul class="list-group">
+                    
+
+       
+
+                 <li style="cursor: pointer;" class="list-group-item" *ngFor="let item of listFav " (click)="onCitySelect(item)">
+                    
+                   
+                            <p class="text-center text-warning lead"><b> {{item.toLocaleUpperCase()}}</b></p> 
+
+                     
+                 </li>
+                  
+                
+
+               </ul>
+
+    </div>
+
+    <div class="col-md-7">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+      
+                    <div class="text-center">
+                        <h2>{{currentCity.toLocaleUpperCase()}}</h2>
+
+<!-- 
+                      <form [formGroup]="forcastForm" (ngSubmit)="onSubmit()">
+                          <input type="text" formControlName="forecastCity">
+                          <button class="btn btn-primary" >GO</button>
+      
+                          <hr>
+                    </form> -->
+
+                    <form (ngSubmit)="onSubmit(form)" #form="ngForm" >
+                        <div class="form-group">
+    
+                          <input 
+                          type="text" 
+                          ngModel 
+                          #textCity="ngModel"
+                           name="city"
+                            placeholder="Name of a city" 
+                            required
+                            pattern="(^[a-zA-Z -]{3,15})(\,[a-zA-z]{2})*">
+                          
+                         <button class="btn btn-primary" name="button"  [disabled]="!form.valid" >GO</button>
+    
+                        </div>
+                         
+    <!-- 
+                        <span class="help-block" *ngIf="checkCityChaged(textCity.value) " >Plz Change city</span> -->
+                            <span class="help-block" *ngIf="!textCity.valid && textCity.touched" >
+                              Please enter a valid city in this format:<br>city   or  city,countryCode<br>"tel aviv"  or  "tel aviv,il"</span>
+    
+                    </form>
+      
+                    </div>
+                </div>
+      
+      
+      
+      
+      
+      
+      
+                <ul class="list-group list-group-horizontal">
+
+                    <li class="list-group-item"  *ngFor="let day of cityForcast ">
+      
+                            <div class="text-center">
+      
+                                <hr>
+                                <div class="container" >
+                                    <div class="row">
+                                      <div class="col-xs-12">
+      
+                                <h2>{{day.day | date: 'MMM d'}}</h2>
+                                <div class="icon">
+                                  <img src="http://openweathermap.org/img/wn/{{day.icon}}.png">
+      
+                              </div>
+                              <div class="temp">
+
+                                  <p *ngIf="degType == 'celsius'" class="text-success">Max: {{ day.tempMax}}&deg; </p>
+                                  <p *ngIf="degType == 'celsius'" class="text-info">Min: {{ day.tempMin}}&deg; </p>
+                                  <p *ngIf="degType != 'celsius'" class="text-success">Max: {{ toFer(day.tempMax)}}&deg; </p>
+                                  <p *ngIf="degType != 'celsius'" class="text-info">Min: {{ toFer(day.tempMin)}}&deg; </p>
+                                 
+                              </div>
+      
+                              </div>
+                            </div>
+                          </div>
+      
+                            </div>
+                            <hr>
+                          </li>
+      
+                        </ul>
+      
+      
+                      
+                    </div>
+                  </div>
+
+    </div>
+
+    
+  
+
+
+</div>
+
+

@@ -1,0 +1,52 @@
+<!--
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+      <li class="nav-item " >
+        <a [routerLink]="['/']" class="nav-item"> Home</a>
+      </li>
+
+      <li class="nav-item " routerLinkActive="active">
+        <a [routerLink]="['forecast']" class="nav-item">5 Day Forecast</a>
+     </li>
+
+    </ul>
+  </nav> -->
+
+
+
+
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Weather</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item  " >
+          <a class="nav-link"  [routerLink]="['/']" class="nav-item"> Home</a>
+        </li>
+        <li class="nav-item " routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['forecast']" class="nav-item">5 Day Forecast</a>
+       </li>
+      
+
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+       <li class="nav-item  " >
+
+          <mat-button-toggle-group  #group="matButtonToggleGroup"  value="celsius" appearance="legacy" name="DegType" aria-label="Font Style">
+              <mat-button-toggle (click)="changeDeg('celsius')" value="celsius">  <p class="text-info">Celsius</p></mat-button-toggle>
+              <mat-button-toggle (click)="changeDeg('fahrenheit')"  value="fahrenheit"><p class="text-warning">Fahrenheit</p></mat-button-toggle>
+            </mat-button-toggle-group>
+       </li>
+      
+
+      </ul>
+    </div>
+  </nav>

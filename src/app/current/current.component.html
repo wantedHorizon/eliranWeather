@@ -1,0 +1,134 @@
+
+
+<div class="row">
+    <div class=" col-md-4">
+        <h2 >
+            Favorites:
+          </h2>
+
+        
+          <div class="row ">
+                 
+                      <p class="text-secondary lead "><b>*Press the"</b></p>
+                 
+
+
+                  <i class="fas fa-star " style="cursor: pointer;font-size:24px;color:yellow;"></i>
+                  <p class="text-secondary lead"><b>" to add to favorites</b></p>
+
+
+                
+              
+
+            </div>
+
+                 <ul class="list-group">
+                    
+
+       
+
+                 <li style="cursor: pointer;" class="list-group-item" *ngFor="let item of listFav " (click)="onCitySelect(item)">
+                    
+                    <div class="row">
+
+                        <div class="col-9">
+                            <p class="text-warning lead"><b> {{item.toLocaleUpperCase()}}</b></p>
+
+                        </div>
+                        <div class="col-3">
+                            <i  (click)="removeFromFav(item)"
+                      class="fa fa-trash" style="cursor: pointer;font-size:24px;"></i>
+                 
+                        </div>
+                 
+
+                 
+                    
+                
+                 
+                    </div>
+                 </li>
+                  
+                
+
+               </ul>
+
+    </div>
+    <div class="col-md-8">
+        <mat-card >
+
+
+                <div class="text-center">
+                    <div class="row align-items-center justify-content-center">
+
+                      <h2 color="primary">{{ myWeather.cityName}}</h2>
+                      <i *ngIf="isfavorite(myWeather.cityName)" (click)="removeFromFav(myWeather.cityName)"
+                      class="fas fa-star" style="cursor: pointer;font-size:24px;color:yellow;"></i>
+                      <i *ngIf="!isfavorite(myWeather.cityName)"  class="far fa-star" style="cursor: pointer;font-size:24px;color:yellow;"
+                      (click)="addtoFav(myWeather.cityName)"
+                      ></i>
+
+
+                  </div>
+
+                  
+                  <h4 *ngIf="degType == 'celsius'" class="text-primary">{{ myWeather.temp}}&deg; </h4>
+                  <h4 *ngIf="degType != 'celsius'" class="text-primary">{{ toFer(myWeather.temp)}}&deg; </h4>
+
+
+                  <!-- <h2></h2> -->
+                  <div class="img">
+                    <img src="http://openweathermap.org/img/wn/{{myWeather.icon}}.png"
+                    class="img-responsive"
+                          style="max-height: 60px;">
+                  </div>
+                  <p><b>{{ myWeather.weatherKind}}</b></p>
+
+                  <p *ngIf="degType == 'celsius'" class="text-success">Max: {{ myWeather.tempMax}}&deg; </p>
+                  <p *ngIf="degType == 'celsius'" class="text-info">Min: {{ myWeather.tempMin}}&deg; </p>
+
+                  
+                  <p *ngIf="degType != 'celsius'" class="text-success">Max: {{toFer( myWeather.tempMax)}}&deg; </p>
+                  <p *ngIf="degType != 'celsius'" class="text-info">Min: {{ toFer(myWeather.tempMin)}}&deg; </p>
+
+
+
+
+
+
+
+
+
+                <form (ngSubmit)="onSubmit(form)" #form="ngForm" >
+                    <div class="form-group">
+
+                      <input 
+                      type="text" 
+                      ngModel 
+                      #textCity="ngModel"
+                       name="city"
+                        placeholder="Name of a city" 
+                        required
+                        pattern="(^[a-zA-Z -]{3,15})(\,[a-zA-z]{2})*">
+
+                      
+                     <button class="btn btn-primary" name="button"  [disabled]="!form.valid" >GO</button>
+
+                    </div>
+                     
+<!-- 
+                    <span class="help-block" *ngIf="checkCityChaged(textCity.value) " >Plz Change city</span> -->
+                        <span class="help-block" *ngIf="!textCity.valid && textCity.touched" >
+                          Please enter a valid city in this format:<br>city   or  city,countryCode<br>"tel aviv"  or  "tel aviv,il"</span>
+
+                </form>
+
+              </div>
+
+          </mat-card>
+
+    </div>
+
+  </div>
+
+

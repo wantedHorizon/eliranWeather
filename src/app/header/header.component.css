@@ -1,0 +1,11 @@
+
+.navbar-nav > .nav-item{
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+
+.mat-button-toggle-group{
+  @include float-right;
+
+}
